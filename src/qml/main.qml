@@ -7,7 +7,7 @@ PageStackWindow {
 
     PageStackWindowStyle {
         id: clocksStyle
-        background: "clocks-bg-landscape.jpg"
+        background: "qrc:/data/clocks-bg-landscape.jpg"
         backgroundFillMode: Image.PreserveAspectCrop
     }
     platformStyle: clocksStyle
@@ -31,12 +31,12 @@ PageStackWindow {
                 TabButton {
                     id: tabButtonClocks
                     tab: tabClocks
-                    iconSource: "icon-m-clocks.svg"
+                    iconSource: "qrc:/data/icon-m-clocks.svg"
                 }
                 TabButton {
                     id: tabButtonAlarms
                     tab: tabAlarms
-                    iconSource: "icon-m-alarms.svg"
+                    iconSource: "qrc:/data/icon-m-alarms.svg"
                 }
             }
             ToolIcon {

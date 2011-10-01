@@ -24,7 +24,7 @@ Page {
         id: portraitClocksPage
         Image {
             id: clockImageP
-            source: "clock_body.png"
+            source: "qrc:/data/clock_body.png"
             //anchors.horizontalCenter: parent.horizontalCenter
             //x: (parent.width - width)/2
             x: (appWindow.height - width)/2 //Now, someone PLS explain me why this works :(
@@ -61,7 +61,7 @@ Page {
         id: landscapeClocksPage
         Image {
             id: clockImageL
-            source: "clock_body.png"
+            source: "qrc:/data/clock_body.png"
             anchors.left: parent.left
             anchors.top: parent.top
             anchors.leftMargin: 30
@@ -143,7 +143,7 @@ Page {
         }
     }
     Image {
-        source: "clock_midbit.png"
+        source: "qrc:/data/clock_midbit.png"
         x: (clockImageL.visible) ? clockImageL.x + clockImageL.width/2 - width/2 : clockImageP.x + clockImageP.width/2 - width/2
         y: (clockImageL.visible) ? clockImageL.y + clockImageL.height/2 - height/2 : clockImageP.y + clockImageP.height/2 - height/2
     }

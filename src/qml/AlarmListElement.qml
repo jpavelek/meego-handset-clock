@@ -6,7 +6,7 @@ Item {
 
     Row {
         Image {
-            source: "icon-m-alarms.svg"
+            source: "qrc:/data/icon-m-alarms.svg"
             width:  64
             height: 64
 

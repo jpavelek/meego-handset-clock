@@ -8,5 +8,6 @@
         <file>data/clock_midbit.png</file>
         <file>data/icon-m-clocks.svg</file>
         <file>data/icon-m-alarms.svg</file>
+        <file>data/clocks-bg-landscape.jpg</file>
     </qresource>
 </RCC>
