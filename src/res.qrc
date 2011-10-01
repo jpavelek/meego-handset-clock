@@ -3,11 +3,12 @@
         <file>qml/main.qml</file>
         <file>qml/ClocksPage.qml</file>
         <file>qml/AlarmsPage.qml</file>
-	<file>qml/AlarmListElement.qml</file>
+        <file>qml/AlarmListElement.qml</file>
         <file>data/clock_body.png</file>
         <file>data/clock_midbit.png</file>
         <file>data/icon-m-clocks.svg</file>
         <file>data/icon-m-alarms.svg</file>
         <file>data/clocks-bg-landscape.jpg</file>
+        <file>data/icon-m-alarm-active.svg</file>
     </qresource>
 </RCC>
