@@ -2,7 +2,21 @@ import QtQuick 1.0
 
 Item {
     width: parent.width
-    height: 64
+    height: 80
+
+    Rectangle {
+        id: intElementRect
+        color: "gray"
+        opacity: 0
+        anchors.fill: parent
+    }
+
+    MouseArea {
+        anchors.fill: parent
+        onPressed: intElementRect.opacity = 0.3
+        onReleased: intElementRect.opacity = 0
+        onCanceled: intElementRect.opacity = 0
+    }
 
     Text {
         id: textName
@@ -11,28 +25,17 @@ Item {
         color: "white"
         style: Text.Outline
         styleColor: "black"
-        font.pixelSize: 36
+        font.pixelSize: 48
         anchors.left: parent.left
         anchors.leftMargin: 20
         anchors.top:parent.top
         anchors.topMargin: 5
     }
-    Text {
-        id: textRepetition
-        text: repetition
-        color: "white"
-        style: Text.Outline
-        styleColor: "black"
-        font.pixelSize: 12
-        anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
-        anchors.left: textName.left
-    }
     Image {
         id: intBellImage
         source: (active) ? "qrc:/data/icon-m-alarm-active.svg" : "qrc:/data/icon-m-alarm-inactive.svg"
-        width:  24
-        height: 24
+        width:  36
+        height: 36
         anchors.right: parent.right
         anchors.rightMargin: 10
         anchors.top: parent.top
@@ -45,11 +48,11 @@ Item {
         color: "white"
         style: Text.Outline
         styleColor: "black"
-        font.pixelSize: 14
+        font.pixelSize: 24
         anchors.right: parent.right
         anchors.rightMargin: 10
-        anchors.top: intBellImage.bottom
-        anchors.topMargin: 5
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 5
     }
 
 
