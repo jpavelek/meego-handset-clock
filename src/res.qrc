@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/">
+        <file>qml/main.qml</file>
+        <file>qml/CLocksPage.qml</file>
+        <file>qml/AlarmsPage.qml</file>
+	<file>qml/AlarmListElement.qml</file>
+        <file>data/clock_body.png</file>
+        <file>data/clock_midbit.png</file>
+        <file>data/icon-m-clocks.svg</file>
+        <file>data/icon-m-alarms.svg</file>
+    </qresource>
+</RCC>
