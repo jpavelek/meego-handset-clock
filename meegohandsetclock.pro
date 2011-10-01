@@ -1,12 +1,7 @@
-# Add more folders to ship with the application, here
-folder_01.source = qml/meegohandsetclock
-folder_01.target = qml
-DEPLOYMENTFOLDERS = folder_01
-
 # Additional import path used to resolve QML modules in Creator's code model
 QML_IMPORT_PATH =
 
-symbian:TARGET.UID3 = 0xE9D067E7
+symbian:TARGET.UID3 = 0xEA7BC11F
 
 # Smart Installer package's UID
 # This UID is from the protected range and therefore the package will
@@ -20,16 +15,18 @@ symbian:TARGET.CAPABILITY += NetworkServices
 
 # If your application uses the Qt Mobility libraries, uncomment the following
 # lines and add the respective components to the MOBILITY variable.
-# CONFIG += mobility
-# MOBILITY +=
 
-# Add dependency to symbian components
-# CONFIG += qtquickcomponents
+QT+= declarative
+TEMPLATE = app
+TARGET = meegohandsetclock
+DESTDIR = bin
 
-# The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+include(src/src.pri)
 
-# Please do not modify the following two lines. Required for deployment.
-include(qmlapplicationviewer/qmlapplicationviewer.pri)
+include(deployment.pri)
 qtcAddDeployment()
+
+QMAKE_CXXFLAGS += -fPIC -fvisibility=hidden -fvisibility-inlines-hidden
+QMAKE_LFLAGS += -pie -rdynamic
+
 
