@@ -127,6 +127,33 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: alarmIconDetail.bottom
                 anchors.topMargin: 50
+                MouseArea {
+                    property int midX: clockImageDetail.width/2
+                    property int midY: clockImageDetail.height/2
+                    anchors.fill: clockImageDetail
+                    onMousePositionChanged: {
+                        console.log("Mouse " + mouse.x + " " + mouse.y)
+                        if (mouse.x > midX) {
+                            if (mouse.y > midY) {
+                                hourRotationDetail.angle = 90 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                console.log("1")
+                            } else {
+                                hourRotationDetail.angle = (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                console.log("2")
+                            }
+                        } else {
+                            if (mouse.y > midY) {
+                                hourRotationDetail.angle = 180 + (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                console.log("3")
+                            } else {
+                                hourRotationDetail.angle = 270 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                console.log("4")
+                            }
+                        }
+
+                        //console.log ("New angle HOURS would be " + hourRotationDetail.angle)
+                    }
+                }
             }
             Rectangle {
                 id: hourHandDetail
@@ -158,12 +185,17 @@ Item {
                     angle: 0 //intClocksPage.minutes * 6
                 }
             }
+            Image {
+                source: "qrc:/data/clock_midbit.png"
+                x: clockImageDetail.x + clockImageDetail.width/2 - width/2
+                y: clockImageDetail.y + clockImageDetail.height/2 - height/2
+            }
             CheckBox {
                 id: alarmActiveDetailSwitch
                 checked: active
                 text: "Alarm active?"
                 anchors.top: clockImageDetail.bottom
-                anchors.topMargin: 20
+                anchors.topMargin: 50
                 anchors.left: parent.left
                 anchors.leftMargin: 20
                 onClicked: {
