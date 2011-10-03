@@ -47,7 +47,7 @@ Item {
     }
     Text {
         id: textTime
-        text: time
+        text: "" + time_h + ":" + time_m
         font.bold: true
         color: "white"
         style: Text.Outline
@@ -112,7 +112,7 @@ Item {
 
             Text {
                 id: textTimeDetail
-                text: time
+                text: "" + time_h + ":" + time_m
                 font.bold: true
                 font.pixelSize: 24
                 color: "white"
@@ -168,11 +168,11 @@ Item {
                     id: hourRotationDetail
                     origin.x: hourHandDetail.width/2
                     origin.y: hourHandDetail.height
-                    angle: 180 //(intClocksPage.hours * 30) + (intClocksPage.minutes * 0.5)
+                    angle: (time_h * 30) + (time_m * 0.5)
                 }
                 MouseArea {
                     anchors.fill: hourHandDetail
-                    onPressed: { alarmDetails.isHours = true; rotator.clicked(mouse)}
+                    onPressed: { alarmDetails.isHours = true; alarmDetails.isMinutes = false; rotator.clicked(mouse)}
                 }
             }
             Rectangle {
@@ -187,11 +187,11 @@ Item {
                     id: minuteRotationDetail
                     origin.x: minuteHandDetail.width/2
                     origin.y: minuteHandDetail.height
-                    angle: 0 //intClocksPage.minutes * 6
+                    angle: time_m * 6
                 }
                 MouseArea {
                     anchors.fill: minuteHandDetail
-                    onPressed: { alarmDetails.isMinutes = true; rotator.clicked(mouse) }
+                    onPressed: { alarmDetails.isMinutes = true; alarmDetails.isHours = false; rotator.clicked(mouse) }
 
                 }
             }

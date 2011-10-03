@@ -10,19 +10,22 @@ Page {
         ListElement {
             name: "Airport"
             repetition: "single alarm"
-            time: "5:45"
+            time_h: 5
+            time_m: 25
             active: true
         }
         ListElement {
             name: "Wake-up"
             repetition: "Every work day"
-            time: "7:15"
+            time_h: 7
+            time_m: 15
             active: true
         }
         ListElement {
             name: "Kindergarten"
             repetition: "Every work day"
-            time: "17:13"
+            time_h: 17
+            time_m: 13
             active: false
         }
     }
