@@ -73,12 +73,11 @@ Item {
             text: "Delete"
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.verticalCenter: parent.verticalCenter
+            onClicked: { console.log ("Delete this") } //TODO
         }
 
         content: Item {
             anchors.fill: parent
-            anchors.leftMargin: 10
-            anchors.topMargin: 10
 
             Rectangle {
                 id: backRectDetail
@@ -97,19 +96,18 @@ Item {
                 anchors.top: parent.top
                 anchors.left: parent.left
             }
-            Text {
+            TextField {
                 id: textNameDetail
                 text: name
                 font.bold: true
                 font.pixelSize: 48
-                color: "white"
-                style: Text.Outline
-                styleColor: "black"
                 anchors.right: parent.right
-                anchors.rightMargin: 20
+                anchors.rightMargin: 15
+                anchors.left: alarmIconDetail.right
                 anchors.top:parent.top
                 anchors.topMargin: 5
             }
+
             Text {
                 id: textTimeDetail
                 text: time
@@ -119,7 +117,7 @@ Item {
                 style: Text.Outline
                 styleColor: "black"
                 anchors.right: parent.right
-                anchors.rightMargin: 20
+                anchors.rightMargin: 15
                 anchors.bottom: alarmIconDetail.bottom
                 anchors.bottomMargin: 20
             }
@@ -170,10 +168,12 @@ Item {
                 anchors.leftMargin: 20
                 onClicked: {
                     alarmIconDetail.source = (checked) ? "qrc:/data/icon-l-alarm-active.svg" : "qrc:/data/icon-l-alarm-inactive.svg"
-                    active = checked
+                    active = checked //FIXME: this does not work - read only property?
                 }
             }
         }
+        onAccepted: { console.log("Accepted") }  //TODO
+        onRejected: { console.log("Rejected") }  //TODO
     }
 }
 
