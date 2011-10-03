@@ -2,7 +2,7 @@ import QtQuick 1.0
 
 Item {
     width: parent.width
-    height: 80
+    height: 96
 
     Rectangle {
         id: intElementRect
@@ -44,7 +44,7 @@ Item {
         anchors.left: parent.left
         anchors.leftMargin: 20
         anchors.top:parent.top
-        anchors.topMargin: 5
+        anchors.topMargin: 20
     }
     Image {
         id: intBellImage
@@ -54,7 +54,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 10
         anchors.top: parent.top
-        anchors.topMargin: 5
+        anchors.topMargin: 20
     }
     Text {
         id: textTime
@@ -67,7 +67,7 @@ Item {
         anchors.right: parent.right
         anchors.rightMargin: 10
         anchors.bottom: parent.bottom
-        anchors.bottomMargin: 5
+        anchors.bottomMargin: 10
     }
 
 
