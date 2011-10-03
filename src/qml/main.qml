@@ -15,6 +15,7 @@ PageStackWindow {
     Page {
         id: topPage
         tools: commonTools
+        orientationLock: PageOrientation.LockPortrait
 
         ToolBarLayout {
             id: commonTools

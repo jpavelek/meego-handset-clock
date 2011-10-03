@@ -3,10 +3,10 @@ import com.nokia.meego 1.0
 
 Sheet {
     id: alarmDetails
+    rotation: appWindow.rotation
 
     acceptButtonText: "Save"
     rejectButtonText: "Cancel"
-    rejectButton.enabled: true
     buttons: SheetButton {
         id: deleteButton
         text: "Delete"
@@ -97,7 +97,7 @@ Sheet {
             text: "Alarm active?"
             anchors.left: alarmActiveDetailSwitch.right
             anchors.leftMargin: 10
-            //anchors.horizontalCenter: alarmActiveDetailSwitch.horizontalCenter
+            //anchors.horizontalCenter: alarmActiveDetailSwitch.horizontalCenter  -- does not work :(
             anchors.bottom: alarmActiveDetailSwitch.bottom
             font.bold: true
             font.pixelSize: 24
