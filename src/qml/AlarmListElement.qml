@@ -113,7 +113,7 @@ Item {
                 source: "qrc:/data/clock_body.png"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: alarmIconDetail.bottom
-                anchors.topMargin: 10
+                anchors.topMargin: 30
             }
             Rectangle {
                 id: hourHandDetail
@@ -145,26 +145,18 @@ Item {
                     angle: 0 //intClocksPage.minutes * 6
                 }
             }
-            Switch {
+            CheckBox {
                 id: alarmActiveDetailSwitch
                 checked: active
+                text: "Alarm active?"
                 anchors.top: clockImageDetail.bottom
                 anchors.topMargin: 20
                 anchors.left: parent.left
                 anchors.leftMargin: 20
-                onStateChanged: {
-                    active = checked
+                onClicked: {
                     alarmIconDetail.source = (checked) ? "qrc:/data/icon-m-alarm-active.svg" : "qrc:/data/icon-m-alarm-inactive.svg"
+                    active = checked
                 }
-            }
-            Text {
-                text: "Alarm active?"
-                anchors.left: alarmActiveDetailSwitch.right
-                anchors.leftMargin: 10
-                //anchors.horizontalCenter: alarmActiveDetailSwitch.horizontalCenter  -- does not work :(
-                anchors.bottom: alarmActiveDetailSwitch.bottom
-                font.bold: true
-                font.pixelSize: 24
             }
         }
     }

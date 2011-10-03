@@ -11,6 +11,5 @@
         <file>data/clocks-bg-landscape.jpg</file>
         <file>data/icon-m-alarm-active.svg</file>
         <file>data/icon-m-alarm-inactive.svg</file>
-        <file>qml/AlarmDetails.qml</file>
     </qresource>
 </RCC>

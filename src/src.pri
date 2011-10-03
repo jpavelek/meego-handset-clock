@@ -10,11 +10,11 @@ OTHER_FILES += \
     src/data/icon-m-zoom-out.svg \
     src/qml/ClocksPage.qml \
     src/qml/AlarmsPage.qml \
-    src/qml/AlarmListElement.qml \
-    src/qml/AlarmDetails.qml
+    src/qml/AlarmListElement.qml
 
 RESOURCES += \
     src/res.qrc
+
 
 
 
