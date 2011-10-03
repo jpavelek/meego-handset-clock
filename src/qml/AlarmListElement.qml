@@ -63,6 +63,8 @@ Item {
     // Sheet here inline as having it in separate file just does not work with screen rotation :(
     //
     Sheet {
+        property bool isHours: false
+        property bool isMinutes: false
         id: alarmDetails
         rotation: appWindow.rotation
 
@@ -128,30 +130,29 @@ Item {
                 anchors.top: alarmIconDetail.bottom
                 anchors.topMargin: 50
                 MouseArea {
+                    id: rotator
                     property int midX: clockImageDetail.width/2
                     property int midY: clockImageDetail.height/2
+                    property int angle: 0
                     anchors.fill: clockImageDetail
+                    onReleased: { alarmDetails.isHours = false; alarmDetails.isMinutes = false }
                     onMousePositionChanged: {
-                        console.log("Mouse " + mouse.x + " " + mouse.y)
-                        if (mouse.x > midX) {
-                            if (mouse.y > midY) {
-                                hourRotationDetail.angle = 90 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
-                                console.log("1")
+                        if ((alarmDetails.isHours == true) || (alarmDetails.isMinutes == true)) {
+                            if (mouse.x > midX) {
+                                if (mouse.y > midY) {
+                                    angle = hourRotationDetail.angle = 90 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                } else {
+                                    angle = (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                }
                             } else {
-                                hourRotationDetail.angle = (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
-                                console.log("2")
+                                if (mouse.y > midY) {
+                                    angle = 180 + (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                } else {
+                                    angle = 270 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                }
                             }
-                        } else {
-                            if (mouse.y > midY) {
-                                hourRotationDetail.angle = 180 + (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
-                                console.log("3")
-                            } else {
-                                hourRotationDetail.angle = 270 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
-                                console.log("4")
-                            }
+                            if (alarmDetails.isHours) hourRotationDetail.angle = angle; else minuteRotationDetail.angle = angle;
                         }
-
-                        //console.log ("New angle HOURS would be " + hourRotationDetail.angle)
                     }
                 }
             }
@@ -169,6 +170,10 @@ Item {
                     origin.y: hourHandDetail.height
                     angle: 180 //(intClocksPage.hours * 30) + (intClocksPage.minutes * 0.5)
                 }
+                MouseArea {
+                    anchors.fill: hourHandDetail
+                    onPressed: { alarmDetails.isHours = true; rotator.clicked(mouse)}
+                }
             }
             Rectangle {
                 id: minuteHandDetail
@@ -183,6 +188,11 @@ Item {
                     origin.x: minuteHandDetail.width/2
                     origin.y: minuteHandDetail.height
                     angle: 0 //intClocksPage.minutes * 6
+                }
+                MouseArea {
+                    anchors.fill: minuteHandDetail
+                    onPressed: { alarmDetails.isMinutes = true; rotator.clicked(mouse) }
+
                 }
             }
             Image {
