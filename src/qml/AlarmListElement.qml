@@ -16,6 +16,21 @@ Item {
         onPressed: intElementRect.opacity = 0.3
         onReleased: intElementRect.opacity = 0
         onCanceled: intElementRect.opacity = 0
+        onClicked: {
+            var newcomp;
+            var alarmDetails;
+            newcomp = Qt.createComponent("AlarmDetails.qml")
+            if (newcomp.status == Component.Ready) {
+                alarmDetails = newcomp.createObject(appWindow);
+                if (alarmDetails === null) {
+                    console.log("Error creating AlarmDetails")
+                } else {
+                    alarmDetails.open()
+                }
+            } else {
+                console.log("Error loading bubble component:", newcomp.errorString())
+            }
+        }
     }
 
     Text {
