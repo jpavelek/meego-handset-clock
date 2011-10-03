@@ -75,17 +75,25 @@ Item {
             anchors.verticalCenter: parent.verticalCenter
         }
 
-        content: Flickable {
+        content: Item {
             anchors.fill: parent
             anchors.leftMargin: 10
             anchors.topMargin: 10
-            flickableDirection: Flickable.VerticalFlick
+
+            Rectangle {
+                id: backRectDetail
+                color: "black"
+                width: parent.width
+                height: 128
+                anchors.top: parent.top
+                anchors.left: parent.left
+            }
 
             Image {
                 id: alarmIconDetail
                 width:  128
                 height: 128
-                source: (active) ? "qrc:/data/icon-m-alarm-active.svg" : "qrc:/data/icon-m-alarm-inactive.svg"
+                source: (active) ? "qrc:/data/icon-l-alarm-active.svg" : "qrc:/data/icon-l-alarm-inactive.svg"
                 anchors.top: parent.top
                 anchors.left: parent.left
             }
@@ -94,6 +102,9 @@ Item {
                 text: name
                 font.bold: true
                 font.pixelSize: 48
+                color: "white"
+                style: Text.Outline
+                styleColor: "black"
                 anchors.right: parent.right
                 anchors.rightMargin: 20
                 anchors.top:parent.top
@@ -104,16 +115,20 @@ Item {
                 text: time
                 font.bold: true
                 font.pixelSize: 24
+                color: "white"
+                style: Text.Outline
+                styleColor: "black"
                 anchors.right: parent.right
                 anchors.rightMargin: 20
                 anchors.bottom: alarmIconDetail.bottom
+                anchors.bottomMargin: 20
             }
             Image {
                 id: clockImageDetail
                 source: "qrc:/data/clock_body.png"
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: alarmIconDetail.bottom
-                anchors.topMargin: 30
+                anchors.topMargin: 50
             }
             Rectangle {
                 id: hourHandDetail
@@ -154,7 +169,7 @@ Item {
                 anchors.left: parent.left
                 anchors.leftMargin: 20
                 onClicked: {
-                    alarmIconDetail.source = (checked) ? "qrc:/data/icon-m-alarm-active.svg" : "qrc:/data/icon-m-alarm-inactive.svg"
+                    alarmIconDetail.source = (checked) ? "qrc:/data/icon-l-alarm-active.svg" : "qrc:/data/icon-l-alarm-inactive.svg"
                     active = checked
                 }
             }
