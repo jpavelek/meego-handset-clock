@@ -133,25 +133,33 @@ Item {
                     id: rotator
                     property int midX: clockImageDetail.width/2
                     property int midY: clockImageDetail.height/2
-                    property int angle: 0
+                    property int rotationAngle: 0
                     anchors.fill: clockImageDetail
                     onReleased: { alarmDetails.isHours = false; alarmDetails.isMinutes = false }
                     onMousePositionChanged: {
                         if ((alarmDetails.isHours == true) || (alarmDetails.isMinutes == true)) {
                             if (mouse.x > midX) {
                                 if (mouse.y > midY) {
-                                    angle = hourRotationDetail.angle = 90 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                    rotationAngle = hourRotationDetail.angle = 90 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
                                 } else {
-                                    angle = (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                    rotationAngle = (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
                                 }
                             } else {
                                 if (mouse.y > midY) {
-                                    angle = 180 + (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
+                                    rotationAngle = 180 + (180/Math.PI) * Math.atan(Math.abs(midX - mouse.x)/Math.abs(midY - mouse.y))
                                 } else {
-                                    angle = 270 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
+                                    rotationAngle = 270 + (180/Math.PI) * Math.atan(Math.abs(midY - mouse.y)/Math.abs(midX - mouse.x))
                                 }
                             }
-                            if (alarmDetails.isHours) hourRotationDetail.angle = angle; else minuteRotationDetail.angle = angle;
+                            if (alarmDetails.isHours) {
+                                hourRotationDetail.angle = rotationAngle
+                                textTimeDetail.text = Math.round(rotationAngle/30) + ":" + time_m
+                                time_h = Math.round(rotationAngle/30)  //FIXME - read only property
+                            } else {
+                                minuteRotationDetail.angle = rotationAngle
+                                textTimeDetail.text = time_h + ":" + Math.round(rotationAngle/6)
+                                time_m = Math.round(rotationAngle/6)  //FIXME - read only property
+                            }
                         }
                     }
                 }
@@ -210,7 +218,26 @@ Item {
                 anchors.leftMargin: 20
                 onClicked: {
                     alarmIconDetail.source = (checked) ? "qrc:/data/icon-l-alarm-active.svg" : "qrc:/data/icon-l-alarm-inactive.svg"
-                    active = checked //FIXME: this does not work - read only property?
+                    //active = checked //FIXME: this does not work - read only property?
+                }
+            }
+            Button {
+                id: repetitionSelectionButton
+                text: "Repeat: Daily"
+                anchors.bottom: parent.bottom
+                anchors.bottomMargin: 10
+                anchors.horizontalCenter: parent.horizontalCenter
+                onClicked: repetitionSelectionDialog.open()
+            }
+
+            SelectionDialog {
+                id: repetitionSelectionDialog
+                titleText: "Select "
+                selectedIndex: 0
+                model: ListModel {
+                    ListElement { name: "Daily" }
+                    ListElement { name: "Every work day" }
+                    ListElement { name: "single shot" }
                 }
             }
         }
